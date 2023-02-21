@@ -20,17 +20,15 @@ public class MainActivity extends AppCompatActivity {
 
         tasarim.setMainActivityNesnesi(this); //xml içerisindeki nesneye bu sınıf üzerinde erişim yetkisi
 
-        tasarim.setHesaplamaSonucu(viewModel.getSonuc());
+        viewModel.getSonuc().observe(this,s -> tasarim.setHesaplamaSonucu(s));
     }
 
     public void buttonToplama(String sayi1, String sayi2) {
         viewModel.toplamaYap(sayi1, sayi2);
-        tasarim.setHesaplamaSonucu(viewModel.getSonuc());
     }
 
     public void buttonCarpma(String sayi1, String sayi2) {
         viewModel.carpmaYap(sayi1, sayi2);
-        tasarim.setHesaplamaSonucu(viewModel.getSonuc());
     }
 
 }
