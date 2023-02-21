@@ -5,28 +5,21 @@ import androidx.lifecycle.ViewModel;
 
 public class MainActivityViewModel extends ViewModel {
     private MutableLiveData<String> sonuc;
+    private MatematikRepository mRepository = new MatematikRepository();
 
     public MainActivityViewModel() {
-        sonuc = new MutableLiveData<>("0");
+        sonuc = mRepository.getMatematikselSonuc();
     }
 
     public MutableLiveData<String> getSonuc() {
         return sonuc;
     }
 
-    public void toplamaYap(String alinanSayi1, String alinanSayi2) {
-        int sayi1 = Integer.parseInt(alinanSayi1);
-        int sayi2 = Integer.parseInt(alinanSayi2);
-        int toplam = sayi1 + sayi2;
-
-        sonuc.setValue(String.valueOf(toplam));
+    public void toplamaYap(String sayi1, String sayi2) {
+        mRepository.topla(sayi1, sayi2);
     }
 
-    public void carpmaYap(String alinanSayi1, String alinanSayi2) {
-        int sayi1 = Integer.parseInt(alinanSayi1);
-        int sayi2 = Integer.parseInt(alinanSayi2);
-        int carpim = sayi1 * sayi2;
-
-        sonuc.setValue(String.valueOf(carpim));
+    public void carpmaYap(String sayi1, String sayi2) {
+        mRepository.carp(sayi1, sayi2);
     }
 }
