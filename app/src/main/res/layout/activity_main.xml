@@ -11,6 +11,7 @@
         <variable
             name="hesaplamaSonucu"
             type="String" />
+        <import type="android.view.View"/>
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,7 +25,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
         android:text="@{hesaplamaSonucu}"
-        android:textSize="20sp"
+        android:textColor="@{Integer.parseInt(hesaplamaSonucu) > 10 ? @color/purple_700 : @color/teal_700}"
+        android:visibility="@{Integer.parseInt(hesaplamaSonucu) > 20 ? View.INVISIBLE : View.VISIBLE}"
+        android:textSize="34sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,7 +37,7 @@
     <EditText
         android:id="@+id/editTextSayi1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginTop="50dp"
         android:ems="10"
         android:hint="Sayı 1"
@@ -46,7 +50,7 @@
     <EditText
         android:id="@+id/editTextSayi2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginTop="30dp"
         android:ems="10"
         android:hint="Sayı 2"
