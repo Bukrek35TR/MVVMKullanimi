@@ -4,38 +4,33 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.mvvmkullanimi.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding tasarim;
+    private MainActivityViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         tasarim = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class); //ViewModel sınıfını ana sınıfa bağlama
+
         tasarim.setMainActivityNesnesi(this); //xml içerisindeki nesneye bu sınıf üzerinde erişim yetkisi
 
-        tasarim.setHesaplamaSonucu("0");
+        tasarim.setHesaplamaSonucu(viewModel.getSonuc());
     }
 
-    public void buttonToplama(String alinanSayi1, String alinanSayi2) {
-        int sayi1 = Integer.parseInt(alinanSayi1);
-        int sayi2 = Integer.parseInt(alinanSayi2);
-
-        int toplam = sayi1 + sayi2;
-
-        tasarim.setHesaplamaSonucu(String.valueOf(toplam));
+    public void buttonToplama(String sayi1, String sayi2) {
+        viewModel.toplamaYap(sayi1, sayi2);
+        tasarim.setHesaplamaSonucu(viewModel.getSonuc());
     }
 
-    public void buttonCarpma(String alinanSayi1, String alinanSayi2) {
-        int sayi1 = Integer.parseInt(alinanSayi1);
-        int sayi2 = Integer.parseInt(alinanSayi2);
-
-
-        int carpim = sayi1 * sayi2;
-
-        tasarim.setHesaplamaSonucu(String.valueOf(carpim));
+    public void buttonCarpma(String sayi1, String sayi2) {
+        viewModel.carpmaYap(sayi1, sayi2);
+        tasarim.setHesaplamaSonucu(viewModel.getSonuc());
     }
 
 }
