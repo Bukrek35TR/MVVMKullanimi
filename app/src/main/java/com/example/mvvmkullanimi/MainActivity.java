@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         tasarim = DataBindingUtil.setContentView(this, R.layout.activity_main);
         tasarim.setMainActivityNesnesi(this); //xml içerisindeki nesneye bu sınıf üzerinde erişim yetkisi
 
-        tasarim.textViewSonuc.setText("0");
+        tasarim.setHesaplamaSonucu("0");
     }
 
     public void buttonToplama(String alinanSayi1, String alinanSayi2) {
@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
         int toplam = sayi1 + sayi2;
 
-        tasarim.textViewSonuc.setText(String.valueOf(toplam));
+        tasarim.setHesaplamaSonucu(String.valueOf(toplam));
     }
 
     public void buttonCarpma(String alinanSayi1, String alinanSayi2) {
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         int carpim = sayi1 * sayi2;
 
-        tasarim.textViewSonuc.setText(String.valueOf(carpim));
+        tasarim.setHesaplamaSonucu(String.valueOf(carpim));
     }
 
 }
